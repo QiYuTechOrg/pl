@@ -12,7 +12,10 @@ RUN tar -zxf php-${PHP_VERSION}.tar.gz
 
 WORKDIR /build/php-${PHP_VERSION}
 RUN apt install -y gcc pkg-config libxml2 libxml2-dev sqlite3 libsqlite3-dev
+RUN mkdir /lang
 RUN ./configure --prefix=/lang
+RUN make
+RUN make install
 
 FROM debian:buster
 
