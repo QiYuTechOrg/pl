@@ -1,0 +1,10 @@
+.idea
+.venv
+poetry.lock
+node_modules
+.DS_Store
+__pycache__
+logs/*.log
+dump_data.json
+demo.json
+package-lock.json
