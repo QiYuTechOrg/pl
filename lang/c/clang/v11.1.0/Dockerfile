@@ -20,14 +20,16 @@ RUN mkdir /lang
 RUN apt -y install gcc g++ lbzip2 cmake python3
 
 # build llvm
-WORKDIR /build/llvm-11.1.0.src
-RUN cmake -DCMAKE_INSTALL_PREFIX:PATH=/lang .
+RUN mkdir /build/llvm
+WORKDIR /build/llvm
+RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/lang ../llvm-11.1.0.src
 RUN make
 RUN make install
 
-WORKDIR /build/clang-11.1.0.src
-RUN cmake -DCMAKE_INSTALL_PREFIX:PATH=/lang .
-RUN cmake  .
+RUN mkdir /build/clang
+WORKDIR /build/clang
+RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/lang ../clang-11.1.0.src
+RUN make  .
 RUN make install
 
 
