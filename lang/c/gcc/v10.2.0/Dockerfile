@@ -10,7 +10,9 @@ RUN apt update && apt install -y make wget
 RUN wget https://ftp.gnu.org/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.gz
 RUN tar -zxvf gcc-10.2.0.tar.gz
 
-# 准备编译
+########################################
+# 准备编译 GCC
+#
 WORKDIR /build/gcc-10.2.0
 RUN mkdir /lang
 RUN apt -y install gcc g++ lbzip2
