@@ -4,7 +4,7 @@ RUN mkdir /build
 WORKDIR /build
 
 # 安装所有的依赖
-RUN apt update && apt install -y make wget
+RUN apt update && apt install -y make wget xz
 
 # 下载 clang
 RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/clang-11.1.0.src.tar.xz
