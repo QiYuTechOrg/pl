@@ -13,7 +13,7 @@ RUN tar -zxvf gcc-10.2.0.tar.gz
 # 准备编译
 WORKDIR /build/gcc-10.2.0
 RUN mkdir /lang
-RUN apt install gcc g++ lbzip2
+RUN apt -y install gcc g++ lbzip2
 # 下载依赖
 RUN ./contrib/download_prerequisites
 # 不需要支持 32bit 的架构
