@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "lang/c/clang/v11.1.0"
+      - "lang/c/clang/v11.1.0/*"
       - ".github/workflows/clang_v11_1_0.yaml"
 
 jobs:

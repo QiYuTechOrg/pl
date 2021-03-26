@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "lang/c/gcc/v10.2.0"
+      - "lang/c/gcc/v10.2.0/*"
       - ".github/workflows/gcc_v10_2_0.yaml"
 
 jobs:
