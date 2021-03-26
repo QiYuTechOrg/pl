@@ -1,4 +1,4 @@
-FROM buster:debian as BASE
+FROM debian:buster as BASE
 
 ARG PHP_VERSION=8.0.3
 
@@ -14,6 +14,6 @@ WORKDIR /build/php-${PHP_VERSION}
 RUN apt install -y gcc pkg-config libxml2 libxml2-dev sqlite3 libsqlite3-dev
 RUN ./configure --prefix=/lang
 
-FROM buster:debian
+FROM debian:buster as BASE
 
 COPY --from=BASE /lang /lang
