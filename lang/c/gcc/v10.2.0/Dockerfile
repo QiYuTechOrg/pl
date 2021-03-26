@@ -8,7 +8,7 @@ RUN apt update && apt install -y make wget
 
 # 下载 gcc
 RUN wget https://ftp.gnu.org/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.gz
-RUN tar -zxvf gcc-10.2.0.tar.gz
+RUN tar -zxf gcc-10.2.0.tar.gz
 
 ########################################
 # 准备编译 GCC

@@ -9,7 +9,7 @@ ARG PY_VERSION=3.9.2
 RUN apt update && apt install -y make wget
 
 RUN wget https://www.python.org/ftp/python/${PY_VERSION}/Python-${PY_VERSION}.tgz
-RUN tar -zxvf Python-${PY_VERSION}.tgz
+RUN tar -zxf Python-${PY_VERSION}.tgz
 
 RUN mkdir /lang
 RUN apt -y install gcc

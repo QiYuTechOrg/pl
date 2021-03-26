@@ -8,7 +8,7 @@ WORKDIR /build
 RUN apt update && apt install -y wget
 RUN wget https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz
 
-RUN tar -zxvf php-${PHP_VERSION}.tar.gz
+RUN tar -zxf php-${PHP_VERSION}.tar.gz
 
 WORKDIR /build/php-${PHP_VERSION}
 RUN apt install -y gcc pkg-config libxml2 libxml2-dev sqlite3 libsqlite3-dev
