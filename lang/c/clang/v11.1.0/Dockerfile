@@ -17,11 +17,18 @@ RUN tar -xvJf clang-11.1.0.src.tar.xz
 # 准备编译 llvm && clang
 #
 RUN mkdir /lang
-RUN apt -y install gcc g++ lbzip2 cmake
-WORKDIR /lang
+RUN apt -y install gcc g++ lbzip2 cmake python3
 
-RUN cmake /build/llvm-11.1.0.src
-RUN cmake /build/clang-11.1.0.src
+# build llvm
+WORKDIR /build/llvm-11.1.0.src
+RUN cmake -DCMAKE_INSTALL_PREFIX:PATH=/lang .
+RUN make
+RUN make install
+
+WORKDIR /build/clang-11.1.0.src
+RUN cmake -DCMAKE_INSTALL_PREFIX:PATH=/lang .
+RUN cmake  .
+RUN make install
 
 
 FROM debian:buster
