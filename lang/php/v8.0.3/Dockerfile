@@ -14,6 +14,6 @@ WORKDIR /build/php-${PHP_VERSION}
 RUN apt install -y gcc pkg-config libxml2 libxml2-dev sqlite3 libsqlite3-dev
 RUN ./configure --prefix=/lang
 
-FROM debian:buster as BASE
+FROM debian:buster
 
 COPY --from=BASE /lang /lang
