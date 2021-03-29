@@ -12,11 +12,14 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     env:
-      IMAGE_NAME: runner:${{ github.event.release.tag_name }}
+      IMAGE_NAME: runner
       BUILD_DIR: runner
 
     steps:
       - uses: actions/checkout@v2
+
+      - uses: olegtarasov/get-tag@v2.1
+        id: tagName
 
       - name: DockerHub
         uses: docker/login-action@v1
@@ -47,6 +50,6 @@ jobs:
           file: ./${{ env.BUILD_DIR }}/Dockerfile
           push: true
           tags: |
-            qiyutech/${{ env.IMAGE_NAME }}
-            ghcr.io/qiyutechdev/${{ env.IMAGE_NAME }}
-            registry.cn-hangzhou.aliyuncs.com/qiyutech/${{ env.IMAGE_NAME }}
+            qiyutech/${{ env.IMAGE_NAME }}:${{ steps.tagName.outputs.tag }}
+            ghcr.io/qiyutechdev/${{ env.IMAGE_NAME }}:${{ steps.tagName.outputs.tag }}
+            registry.cn-hangzhou.aliyuncs.com/qiyutech/${{ env.IMAGE_NAME }}:${{ steps.tagName.outputs.tag }}
