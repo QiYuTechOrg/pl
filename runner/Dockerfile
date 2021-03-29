@@ -4,7 +4,8 @@ RUN mkdir /build
 WORKDIR build
 COPY . /build
 RUN go build .
-COPY runner /bin/
+RUN ls -lh
+COPY ./runner /bin/
 
 FROM debian:buster
 
