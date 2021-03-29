@@ -1,4 +1,4 @@
-name: gcc v10.2.0
+name: gcc/v10.2.0
 
 on:
   push:
