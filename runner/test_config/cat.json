@@ -1,0 +1,10 @@
+{
+  "command": "cat",
+  "args": [
+    "--"
+  ],
+  "timeout": 3,
+  "stdin_data": "hello\ncat",
+  "stdout_max_size": 1000000,
+  "stderr_max_size": 1000000
+}

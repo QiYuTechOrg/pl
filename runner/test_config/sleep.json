@@ -1,0 +1,10 @@
+{
+  "command": "sleep",
+  "args": [
+    "5"
+  ],
+  "timeout": 1,
+  "stdin_data": "",
+  "stdout_max_size": 1000000,
+  "stderr_max_size": 1000000
+}

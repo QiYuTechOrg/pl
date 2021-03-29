@@ -1,0 +1,8 @@
+{
+  "command": "ls",
+  "args": [],
+  "timeout": 5,
+  "stdin_data": "",
+  "stdout_max_size": 1000000,
+  "stderr_max_size": 1000000
+}
