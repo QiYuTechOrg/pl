@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths:
       - "runner/**"
-      - ".github/workflows/runner.yaml"
+      - ".github/workflows/runner_dev.yaml"
 
 jobs:
   build:
