@@ -1,4 +1,4 @@
-FROM ghcr.io/qiyutechdev/runner:v0.0.1p0 as BASE
+FROM ghcr.io/qiyutechdev/runner:v0.0.2 as BASE
 # 因为我们使用 github Action
 # 所以这儿使用 github container 地址 [速度比较快]
 
