@@ -1,8 +1,8 @@
 FROM golang:1.16.2-buster as BASE
 
 RUN mkdir /build
-WORKDIR build
 COPY . /build
+WORKDIR /build
 RUN go build .
 RUN ls -lh
 RUN cp runner /bin/
