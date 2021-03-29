@@ -2,16 +2,17 @@ name: runner agent
 
 on:
   push:
-    branches: [ main ]
+    tags:
+      - v*
     paths:
       - "runner/**"
-      - ".github/workflows/runner_dev.yaml"
+      - ".github/workflows/runner_release.yaml"
 
 jobs:
   build:
     runs-on: ubuntu-20.04
     env:
-      IMAGE_NAME: runner:v0.0.1p0
+      IMAGE_NAME: runner:${{ github.event.release.tag_name }}
       BUILD_DIR: runner
 
     steps:
