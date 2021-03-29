@@ -1,4 +1,4 @@
-name: runner agent
+name: runner agent release
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: runner agent
+name: runner agent dev
 
 on:
   push:
