@@ -1,22 +1,8 @@
-FROM debian:buster as BASE
+FROM ghcr.io/qiyutechdev/runner:v0.0.3 as BASE
+# 因为我们使用 github Action
+# 所以这儿使用 github container 地址 [速度比较快]
 
-ARG PHP_VERSION=8.0.3
+FROM php:8.0.3
 
-RUN mkdir /build
-WORKDIR /build
-
-RUN apt update && apt install -y wget
-RUN wget https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz
-
-RUN tar -zxf php-${PHP_VERSION}.tar.gz
-
-WORKDIR /build/php-${PHP_VERSION}
-RUN apt install -y gcc pkg-config libxml2 libxml2-dev sqlite3 libsqlite3-dev
-RUN mkdir /lang
-RUN ./configure --prefix=/lang
-RUN make
-RUN make install
-
-FROM debian:buster
-
-COPY --from=BASE /lang /lang
+COPY --from=BASE /bin/runner /bin/runner
+RUN useradd runner
