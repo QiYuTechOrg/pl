@@ -1,0 +1,4 @@
+[c.gcc]
+default = "qiyutech/gcc:v10.2.0p1"
+"v10.1.0" = "qiyutech/gcc:v10.1.0p1"
+"v10.2.0" = "qiyutech/gcc:v10.2.0p1"
