@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths:
       - "lang/python/v3.9/*"
-      - ".github/workflows/python_v3_9.yaml"
+      - ".github/workflows/py_v3_9.yaml"
 
 jobs:
   build:

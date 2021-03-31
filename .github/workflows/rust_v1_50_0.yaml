@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths:
       - "lang/rust/v1.50.0/*"
-      - ".github/workflows/rust_v1.50.0.yaml"
+      - ".github/workflows/rust_v1_50_0.yaml"
 
 jobs:
   build:
