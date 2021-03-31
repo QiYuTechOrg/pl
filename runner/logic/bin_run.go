@@ -47,14 +47,15 @@ func RunBin(args dt.RunArgs) dt.RunRet {
 
     go func() {
         wg.Add(1)
+        defer wg.Done()
+
         var buf = make([]byte, 2048)
         for {
             n, err := stdout.Read(buf)
             if n == 0 {
                 break
             }
-            s := string(buf[:n])
-            stdoutString += s
+            stdoutString += string(buf[:n])
             if len(stdoutString) > args.StdoutMaxSize {
                 stdoutError = "stdout(标准输出) 长度超过了限制"
                 _ = cmd.Process.Kill()
@@ -68,7 +69,6 @@ func RunBin(args dt.RunArgs) dt.RunRet {
                 break
             }
         }
-        wg.Done()
     }()
 
     var stderrString string
@@ -76,6 +76,7 @@ func RunBin(args dt.RunArgs) dt.RunRet {
 
     go func() {
         wg.Add(1)
+        defer wg.Done()
         var buf = make([]byte, 2048)
         for {
             n, err := stderr.Read(buf)
@@ -97,7 +98,6 @@ func RunBin(args dt.RunArgs) dt.RunRet {
                 break
             }
         }
-        wg.Done()
     }()
 
     if err = cmd.Start(); err != nil {
@@ -133,6 +133,8 @@ func RunBin(args dt.RunArgs) dt.RunRet {
             Message:     err.Error(),
         }
     }
+
+    wg.Wait()
 
     return dt.RunRet{
         ExitCode:   0,
