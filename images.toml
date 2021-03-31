@@ -1,3 +1,10 @@
+# latest file is at:
+# https://github.com/QiYuTechOrg/pl/blob/main/images.toml
+#
+# or you can download from jsdelivr
+# https://cdn.jsdelivr.net/gh/QiYuTechOrg/pl@main/images.toml
+#
+
 [c.gcc]
 default = "qiyutech/gcc:v10.2.0p1"
 "v10.1.0" = "qiyutech/gcc:v10.1.0p1"
