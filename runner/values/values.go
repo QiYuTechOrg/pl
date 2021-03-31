@@ -15,4 +15,7 @@ const (
 
     /// C++ 二进制文件
     CppLangADotOutFile = "/data/a.out"
+
+    /// Rust 二进制文件
+    RustOutFile = "/data/rust"
 )
