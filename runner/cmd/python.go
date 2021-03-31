@@ -11,27 +11,26 @@ import (
 )
 
 func init() {
-    rootCmd.AddCommand(c)
+    rootCmd.AddCommand(pythonLang)
 }
 
-/// 编译 & 执行 C 语言的
-var c = &cobra.Command{
-    Use:   "c",
-    Short: "运行 " + values.CLangADotOutFile + " 程序",
-    Long: fmt.Sprintf(`在 docker 中 执行 a.out  二进制程序
+var pythonLang = &cobra.Command{
+    Use:   "python",
+    Short: "运行 Python 脚本 [文件路径:" + values.PythonInFile + "]",
+    Long: fmt.Sprintf(`在 docker 中 执行 Python 脚本
 
 运行配置文件路径: %s [此文件必须存在]
-执行的 a.out 文件路径: %s [此文件必须存在]
+执行的脚本文件路径: %s [此文件必须存在]
 
 输出结果文件路径: %s [存在会被重写]
-`, values.RunFile, values.CLangADotOutFile, values.OutFile),
+`, values.RunFile, values.PythonInFile, values.OutFile),
     Run: func(cmd *cobra.Command, args []string) {
 
         c := run_helper.LoadRunConfig()
 
         runArgs := dt.RunArgs{
-            Command:       values.CLangADotOutFile,
-            Args:          c.ArgsSplit(),
+            Command:       values.PythonBinary,
+            Args:          append([]string{values.PythonInFile}, c.ArgsSplit()...),
             Timeout:       c.Timeout,
             StdinData:     c.StdinData,
             StdoutMaxSize: c.StdoutMaxSize,

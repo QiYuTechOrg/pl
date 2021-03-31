@@ -5,10 +5,8 @@ const (
     WorkDir = "/data/"
 
     /// 全局文件目录
-    ArgsFile  = WorkDir + "args.txt"
-    StdinFile = WorkDir + "stdin.txt"
-    RunFile   = WorkDir + "run.json"
-    OutFile   = WorkDir + "out.json"
+    RunFile = WorkDir + "run.json"
+    OutFile = WorkDir + "out.json"
 
     /// C 二进制文件
     CLangADotOutFile = "/data/a.out"
@@ -17,5 +15,9 @@ const (
     CppLangADotOutFile = "/data/a.out"
 
     /// Rust 二进制文件
-    RustOutFile = "/data/rust"
+    RustBinFile = "/data/rust"
+
+    /// Python 脚本文件
+    PythonBinary = "python"
+    PythonInFile = "/data/main.py"
 )
