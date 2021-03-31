@@ -24,7 +24,7 @@ var rustLang = &cobra.Command{
 命令行参数文件路径: %s [此文件必须存在, 可以为空]
 标准输入文件路径: %s [此文件必须存在, 可以为空]
 
-输出结果文件路径: %s [此文件必须没有存在]
+输出结果文件路径: %s [存在会被重写]
 `, values.RustOutFile, values.ArgsFile, values.StdinFile, values.RunFile, values.OutFile),
     Run: func(cmd *cobra.Command, args []string) {
 
