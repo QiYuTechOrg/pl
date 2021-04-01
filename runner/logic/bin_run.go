@@ -47,6 +47,11 @@ func RunBin(args dt.RunArgs) dt.RunRet {
     // 修正 file already closed problem
     // 必须准备好 stdout stderr IO 之后
     // 然后再启动进程
+    //
+    // 需要 ioPrepare 的原因为:
+    // 在某些系统上，因为调度的原因
+    // 如果 子进程已经执行完成 而本进程却没有 第一次读取操作 的时候
+    // 这时候 进行读取会返回 文件已经关闭(file already closed)的错误
     var ioPrepare sync.WaitGroup
 
     stdoutData := new(string)
