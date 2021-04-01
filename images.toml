@@ -6,17 +6,17 @@
 #
 
 [c.gcc]
-default = "qiyutech/gcc:v10.2.0p2"
-"v10.1.0" = "qiyutech/gcc:v10.1.0p2"
-"v10.2.0" = "qiyutech/gcc:v10.2.0p2"
+default = "qiyutech/gcc:v10.2.0p3"
+"v10.1.0" = "qiyutech/gcc:v10.1.0p3"
+"v10.2.0" = "qiyutech/gcc:v10.2.0p3"
 
 [rust]
-"v1.51.0" = "qiyutech/rust:v1.51.0p2"
-"v1.50.0" = "qiyutech/rust:v1.50.0p2"
+"v1.51.0" = "qiyutech/rust:v1.51.0p3"
+"v1.50.0" = "qiyutech/rust:v1.50.0p3"
 
 [php]
-"v8.0.3" = "qiyutech/php:v8.0.3p2"
+"v8.0.3" = "qiyutech/php:v8.0.3p3"
 
 [python]
-"v3.9" = "qiyutech/python:v3.9p2"
-"v3.8" = "qiyutech/python:v3.8p2"
+"v3.9" = "qiyutech/python:v3.9p3"
+"v3.8" = "qiyutech/python:v3.8p3"
