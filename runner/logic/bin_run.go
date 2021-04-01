@@ -43,47 +43,47 @@ func RunBin(args dt.RunArgs) dt.RunRet {
 
     var wg sync.WaitGroup
 
-    var stdoutString string
-    var stdoutError string
+    stdoutString := new(string)
+    stdoutError := new(string)
 
     wg.Add(1)
     go func() {
         defer wg.Done()
         maxSize := args.StdoutMaxSize
-        stdoutBuf := make([]byte, maxSize)
-        buffer := bytes.NewBuffer(stdoutBuf)
+        buffer := bytes.NewBuffer(make([]byte, maxSize))
         n, err := io.CopyN(buffer, stdout, int64(maxSize))
-        stdoutString = string(stdoutBuf[:n])
+        *stdoutString = buffer.String()
+        println(*stdoutString)
         if n >= int64(maxSize) {
-            stdoutError = "stdout(标准输出) 长度超过了限制"
+            *stdoutError = "stdout(标准输出) 长度超过了限制"
             _ = cmd.Process.Kill()
         }
 
         if err == nil || err == io.EOF {
             return
         }
-        stdoutError = err.Error()
+        *stdoutError = err.Error()
     }()
 
-    var stderrString string
-    var stderrError string
+    stderrString := new(string)
+    stderrError := new(string)
 
     wg.Add(1)
     go func() {
         defer wg.Done()
         maxSize := args.StderrMaxSize
-        stderrBuf := make([]byte, maxSize)
-        buffer := bytes.NewBuffer(stderrBuf)
+        buffer := bytes.NewBuffer(make([]byte, maxSize))
         n, err := io.CopyN(buffer, stderr, int64(maxSize))
-        stdoutString = string(stderrBuf[:n])
+        *stderrString = buffer.String()
+        println(*stderrString)
         if n >= int64(maxSize) {
-            stderrError = "stderr(标准错误) 长度超过了限制"
+            *stderrError = "stderr(标准错误) 长度超过了限制"
             _ = cmd.Process.Kill()
         }
         if err == nil || err == io.EOF {
             return
         }
-        stderrError = err.Error()
+        *stderrError = err.Error()
     }()
 
     if err = cmd.Start(); err != nil {
@@ -94,15 +94,17 @@ func RunBin(args dt.RunArgs) dt.RunRet {
     }
 
     if err := cmd.Wait(); err != nil {
+        wg.Wait()
+
         exitError, ok := err.(*exec.ExitError)
         if ok {
             return dt.RunRet{
                 ExitCode:   exitError.ExitCode(),
-                StdoutData: stdoutString,
-                StderrData: stderrString,
+                StdoutData: *stdoutString,
+                StderrData: *stderrString,
 
-                StdoutError: stdoutError,
-                StderrError: stderrError,
+                StdoutError: *stdoutError,
+                StderrError: *stderrError,
                 Execute:     true,
                 Message:     err.Error(),
             }
@@ -110,25 +112,28 @@ func RunBin(args dt.RunArgs) dt.RunRet {
 
         return dt.RunRet{
             ExitCode:   exitError.ExitCode(),
-            StdoutData: stdoutString,
-            StderrData: stderrString,
+            StdoutData: *stdoutString,
+            StderrData: *stderrString,
 
-            StdoutError: stdoutError,
-            StderrError: stderrError,
+            StdoutError: *stdoutError,
+            StderrError: *stderrError,
             Execute:     true,
             Message:     err.Error(),
         }
     }
 
+    println("2 stdout", *stdoutString)
+    println("2 stderr", *stderrString)
+
     wg.Wait()
 
     return dt.RunRet{
         ExitCode:   0,
-        StdoutData: stdoutString,
-        StderrData: stderrString,
+        StdoutData: *stdoutString,
+        StderrData: *stderrString,
 
-        StdoutError: stdoutError,
-        StderrError: stderrError,
+        StdoutError: *stdoutError,
+        StderrError: *stderrError,
         Execute:     true,
         Message:     "",
     }
