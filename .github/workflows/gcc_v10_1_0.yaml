@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     env:
-      IMAGE_NAME: gcc:v10.1.0p4
+      IMAGE_NAME: gcc:v10.1.0p5
       BUILD_DIR: lang/c/gcc/v10.1.0
     steps:
       - uses: actions/checkout@v2
