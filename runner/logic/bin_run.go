@@ -1,6 +1,7 @@
 package logic
 
 import (
+    "bytes"
     "context"
     "io"
     "runner/dt"
@@ -45,59 +46,44 @@ func RunBin(args dt.RunArgs) dt.RunRet {
     var stdoutString string
     var stdoutError string
 
+    wg.Add(1)
     go func() {
-        wg.Add(1)
         defer wg.Done()
-
-        var buf = make([]byte, 2048)
-        for {
-            n, err := stdout.Read(buf)
-            if n == 0 {
-                break
-            }
-            stdoutString += string(buf[:n])
-            if len(stdoutString) > args.StdoutMaxSize {
-                stdoutError = "stdout(标准输出) 长度超过了限制"
-                _ = cmd.Process.Kill()
-                break
-            }
-            if err == io.EOF {
-                break
-            }
-            if err != nil {
-                stdoutError = err.Error()
-                break
-            }
+        maxSize := args.StdoutMaxSize
+        stdoutBuf := make([]byte, maxSize)
+        buffer := bytes.NewBuffer(stdoutBuf)
+        n, err := io.CopyN(buffer, stdout, int64(maxSize))
+        stdoutString = string(stdoutBuf[:n])
+        if n >= int64(maxSize) {
+            stdoutError = "stdout(标准输出) 长度超过了限制"
+            _ = cmd.Process.Kill()
         }
+
+        if err == nil || err == io.EOF {
+            return
+        }
+        stdoutError = err.Error()
     }()
 
     var stderrString string
     var stderrError string
 
+    wg.Add(1)
     go func() {
-        wg.Add(1)
         defer wg.Done()
-        var buf = make([]byte, 2048)
-        for {
-            n, err := stderr.Read(buf)
-            if n == 0 {
-                break
-            }
-            s := string(buf[:n])
-            stderrString += s
-            if len(stderrString) > args.StderrMaxSize {
-                stdoutError = "stderr(标准错误) 长度超过了限制"
-                _ = cmd.Process.Kill()
-                break
-            }
-            if err == io.EOF {
-                break
-            }
-            if err != nil {
-                stderrError = err.Error()
-                break
-            }
+        maxSize := args.StderrMaxSize
+        stderrBuf := make([]byte, maxSize)
+        buffer := bytes.NewBuffer(stderrBuf)
+        n, err := io.CopyN(buffer, stderr, int64(maxSize))
+        stdoutString = string(stderrBuf[:n])
+        if n >= int64(maxSize) {
+            stderrError = "stderr(标准错误) 长度超过了限制"
+            _ = cmd.Process.Kill()
         }
+        if err == nil || err == io.EOF {
+            return
+        }
+        stderrError = err.Error()
     }()
 
     if err = cmd.Start(); err != nil {
