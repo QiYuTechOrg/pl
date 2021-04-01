@@ -41,16 +41,24 @@ func RunBin(args dt.RunArgs) dt.RunRet {
         return dt.RunRet{Execute: false, Message: "重定向 stderr(标准错误) 失败"}
     }
 
-    var wg sync.WaitGroup
+    // io 完成等待
+    var ioDone sync.WaitGroup
+
+    // 修正 file already closed problem
+    // 必须准备好 stdout stderr IO 之后
+    // 然后再启动进程
+    var ioPrepare sync.WaitGroup
 
     stdoutData := new(string)
     stdoutError := new(string)
 
-    wg.Add(1)
+    ioDone.Add(1)
+    ioPrepare.Add(1)
     go func() {
-        defer wg.Done()
+        defer ioDone.Done()
         maxSize := int64(args.StdoutMaxSize)
         buffer := bytes.NewBuffer(make([]byte, 0))
+        ioPrepare.Done()
         n, err := io.CopyN(buffer, stdout, maxSize)
         *stdoutData = buffer.String()
         if n >= maxSize {
@@ -67,11 +75,13 @@ func RunBin(args dt.RunArgs) dt.RunRet {
     stderrData := new(string)
     stderrError := new(string)
 
-    wg.Add(1)
+    ioDone.Add(1)
+    ioPrepare.Add(1)
     go func() {
-        defer wg.Done()
+        defer ioDone.Done()
         maxSize := int64(args.StderrMaxSize)
         buffer := bytes.NewBuffer(make([]byte, 0))
+        ioPrepare.Done()
         n, err := io.CopyN(buffer, stderr, 0)
         *stderrData = buffer.String()
         if n >= maxSize {
@@ -84,6 +94,7 @@ func RunBin(args dt.RunArgs) dt.RunRet {
         *stderrError = err.Error()
     }()
 
+    ioPrepare.Wait()
     if err = cmd.Start(); err != nil {
         return dt.RunRet{
             Execute: false,
@@ -92,7 +103,7 @@ func RunBin(args dt.RunArgs) dt.RunRet {
     }
 
     if err := cmd.Wait(); err != nil {
-        wg.Wait()
+        ioDone.Wait()
 
         exitError, ok := err.(*exec.ExitError)
         if ok {
@@ -120,7 +131,7 @@ func RunBin(args dt.RunArgs) dt.RunRet {
         }
     }
 
-    wg.Wait()
+    ioDone.Wait()
 
     return dt.RunRet{
         ExitCode:   0,
