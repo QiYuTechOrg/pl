@@ -107,8 +107,9 @@ func RunBin(args dt.RunArgs) dt.RunRet {
         }
     }
 
+    ioDone.Wait()
+
     if err := cmd.Wait(); err != nil {
-        ioDone.Wait()
 
         exitError, ok := err.(*exec.ExitError)
         if ok {
@@ -135,8 +136,6 @@ func RunBin(args dt.RunArgs) dt.RunRet {
             Message:     err.Error(),
         }
     }
-
-    ioDone.Wait()
 
     return dt.RunRet{
         ExitCode:   0,
