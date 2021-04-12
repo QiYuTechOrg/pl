@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths:
       - "lang/c/gcc/v10.3.0/*"
-      - ".github/workflows/gcc_v10.3.0.yaml"
+      - ".github/workflows/gcc_v10_3_0.yaml"
 
 jobs:
   build:
