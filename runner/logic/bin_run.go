@@ -11,7 +11,7 @@ import (
 
 import "os/exec"
 
-/// 运行二进制程序
+// RunBin 运行二进制程序
 func RunBin(args dt.RunArgs) dt.RunRet {
     ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(args.Timeout))
     defer cancel()
