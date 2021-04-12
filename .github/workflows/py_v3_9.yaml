@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     env:
-      IMAGE_NAME: python:v3.9p5
+      IMAGE_NAME: python:v3.9p6
       BUILD_DIR: lang/python/v3.9
     steps:
       - uses: actions/checkout@v2
