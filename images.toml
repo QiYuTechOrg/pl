@@ -9,6 +9,7 @@
 default = "qiyutech/gcc:v10.2.0p5"
 "v10.1.0" = "qiyutech/gcc:v10.1.0p5"
 "v10.2.0" = "qiyutech/gcc:v10.2.0p5"
+"v10.3.0" = "qiyutech/gcc:v10.3.0p5"
 
 [rust]
 "v1.51.0" = "qiyutech/rust:v1.51.0p5"
