@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     env:
-      IMAGE_NAME: php:v8.0.5p8
+      IMAGE_NAME: php:v8.0.5p9
       BUILD_DIR: lang/php/v8.0.5
     steps:
       - uses: actions/checkout@v2
