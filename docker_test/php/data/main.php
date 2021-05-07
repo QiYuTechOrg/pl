@@ -1,3 +1,3 @@
 <?php
 
-echo "main"
+echo "PHP\n";
