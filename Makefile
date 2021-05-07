@@ -16,3 +16,7 @@ comby-dry-run-bump-patch:
 
 comby-in-place-bump-patch:
 	comby -d .github/workflows -in-place $(OLD_PATCH_VERSION) $(NEW_PATCH_VERSION)
+
+
+test:
+	echo ok
