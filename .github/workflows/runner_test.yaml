@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "runner/**"
+      - "docker_test/**"
       - ".github/workflows/runner_test.yaml"
 
 jobs:
