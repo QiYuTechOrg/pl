@@ -28,3 +28,6 @@ local-test:
 
 	docker build -f docker_test/python/Dockerfile . -t python
 	cd docker_test/python && docker run -it -v `pwd`/data:/data python runner python
+
+clean-local-test:
+	rm -f docker_test/*/data/out.json
