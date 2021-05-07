@@ -6,26 +6,26 @@
 #
 
 [c.gcc]
-default = "qiyutech/gcc:v11.1.0p8"
-"v10.1.0" = "qiyutech/gcc:v10.1.0p8"
-"v10.2.0" = "qiyutech/gcc:v10.2.0p8"
-"v10.3.0" = "qiyutech/gcc:v10.3.0p8"
-"v11.1.0" = "qiyutech/gcc:v11.1.0p8"
+default = "qiyutech/gcc:v11.1.0p9"
+"v11.1.0" = "qiyutech/gcc:v11.1.0p9"
+"v10.3.0" = "qiyutech/gcc:v10.3.0p9"
+"v10.2.0" = "qiyutech/gcc:v10.2.0p9"
+"v10.1.0" = "qiyutech/gcc:v10.1.0p9"
 
 [rust]
-"v1.52.0" = "qiyutech/rust:v1.52.0p8"
-"v1.51.0" = "qiyutech/rust:v1.51.0p8"
-"v1.50.0" = "qiyutech/rust:v1.50.0p8"
+"v1.52.0" = "qiyutech/rust:v1.52.0p9"
+"v1.51.0" = "qiyutech/rust:v1.51.0p9"
+"v1.50.0" = "qiyutech/rust:v1.50.0p9"
 
 [php]
-"v8.0.5" = "qiyutech/php:v8.0.5p8"
-"v8.0.3" = "qiyutech/php:v8.0.3p8"
+"v8.0.5" = "qiyutech/php:v8.0.5p9"
+"v8.0.3" = "qiyutech/php:v8.0.3p9"
 
 [python]
-"v3.9" = "qiyutech/python:v3.9p8"
-"v3.8" = "qiyutech/python:v3.8p8"
+"v3.9" = "qiyutech/python:v3.9p9"
+"v3.8" = "qiyutech/python:v3.8p9"
 
 [node]
-v16 = "qiyutech/node:v16p8"
-v15 = "qiyutech/node:v15p8"
-v14 = "qiyutech/node:v14p8"
+v16 = "qiyutech/node:v16p9"
+v15 = "qiyutech/node:v15p9"
+v14 = "qiyutech/node:v14p9"
