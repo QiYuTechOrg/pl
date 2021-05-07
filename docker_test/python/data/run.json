@@ -1,0 +1,7 @@
+{
+  "args": "",
+  "timeout": 30,
+  "stdin_data": "",
+  "stdout_max_size": 64000,
+  "stderr_max_size": 64000
+}
