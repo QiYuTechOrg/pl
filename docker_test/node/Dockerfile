@@ -6,6 +6,6 @@ WORKDIR /build
 RUN go build .
 RUN cp runner /bin/
 
-FROM node:v16
+FROM node:16
 
 COPY --from=BASE /bin/runner /bin/runner
