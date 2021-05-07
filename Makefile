@@ -8,8 +8,8 @@ comby-in-place-runner-version:
 	comby -d lang -in-place $(OLD_RUNNER_VERSION) $(NEW_RUNNER_VERSION)
 
 
-OLD_PATCH_VERSION:=p6
-NEW_PATCH_VERSION:=p7
+OLD_PATCH_VERSION:=p7
+NEW_PATCH_VERSION:=p8
 
 comby-dry-run-bump-patch:
 	comby -d .github/workflows $(OLD_PATCH_VERSION) $(NEW_PATCH_VERSION)

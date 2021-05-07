@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     env:
-      IMAGE_NAME: node:v16p7
+      IMAGE_NAME: node:v16p8
       BUILD_DIR: lang/node/v16
     steps:
       - uses: actions/checkout@v2
