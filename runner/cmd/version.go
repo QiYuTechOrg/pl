@@ -13,6 +13,6 @@ var version = &cobra.Command{
     Short: "显示当前版本",
     Long:  "显示软件的当前版本",
     Run: func(cmd *cobra.Command, args []string) {
-        println("v0.1.1")
+        println("v0.2.0")
     },
 }
