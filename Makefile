@@ -19,4 +19,9 @@ comby-in-place-bump-patch:
 
 
 test:
-	echo ok
+	echo "PHP 编译..."
+	cd docker_test/php    && docker build . -t php
+	echo "Node 编译..."
+	cd docker_test/node   && docker build . -t node
+	echo "Python 编译..."
+	cd docker_test/python && docker build . -t python
