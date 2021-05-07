@@ -10,21 +10,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    env:
-      IMAGE_NAME: runner:dev
-      BUILD_DIR: runner
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Run PHP Test
         run: |
-          cd docker_test/php    && docker build . -t php
+          docker build -f docker_test/php/Dockerfile . -t php
 
       - name: Run Node Test
         run: |
-          cd docker_test/php    && docker build . -t php
+          docker build -f docker_test/node/Dockerfile . -t node
 
       - name: Run Python Test
         run: |
-          cd docker_test/python && docker build . -t python
+          docker build -f docker_test/python/Dockerfile . -t python
