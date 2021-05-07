@@ -17,11 +17,3 @@ comby-dry-run-bump-patch:
 comby-in-place-bump-patch:
 	comby -d .github/workflows -in-place $(OLD_PATCH_VERSION) $(NEW_PATCH_VERSION)
 
-
-test:
-	echo "PHP 编译..."
-	cd docker_test/php    && docker build . -t php
-	echo "Node 编译..."
-	cd docker_test/node   && docker build . -t node
-	echo "Python 编译..."
-	cd docker_test/python && docker build . -t python

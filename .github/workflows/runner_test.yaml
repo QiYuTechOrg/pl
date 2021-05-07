@@ -17,6 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run Test
+      - name: Run PHP Test
         run: |
-          make test
+          cd docker_test/php    && docker build . -t php
+
+      - name: Run Node Test
+        run: |
+          cd docker_test/php    && docker build . -t php
+
+      - name: Run Python Test
+        run: |
+          cd docker_test/python && docker build . -t python
