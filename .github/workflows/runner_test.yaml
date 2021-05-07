@@ -2,7 +2,6 @@ name: Runner Test
 
 on:
   push:
-    branches: [ main ]
     paths:
       - "runner/**"
       - ".github/workflows/runner_test.yaml"
