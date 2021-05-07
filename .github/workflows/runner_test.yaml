@@ -17,17 +17,14 @@ jobs:
       - name: Run PHP Test
         run: |
           docker build -f docker_test/php/Dockerfile . -t php
-          cd docker_test/php && docker run -v `pwd`/data:/data php runner php
-          cd docker_test/php && cat data/out.json
+          cd docker_test/php && docker run -v `pwd`/data:/data php runner php && cat data/out.json
 
       - name: Run Node Test
         run: |
           docker build -f docker_test/node/Dockerfile . -t node
-          cd docker_test/node && docker run -v `pwd`/data:/data node runner node
-          cd docker_test/node && cat data/out.json
+          cd docker_test/node && docker run -v `pwd`/data:/data node runner node && cat data/out.json
 
       - name: Run Python Test
         run: |
           docker build -f docker_test/python/Dockerfile . -t python
-          cd docker_test/python && docker run -v `pwd`/data:/data python runner python
-          cd docker_test/python && cat data/out.json
+          cd docker_test/python && docker run -v `pwd`/data:/data python runner python && cat data/out.json
